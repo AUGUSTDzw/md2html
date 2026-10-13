@@ -316,7 +316,7 @@ button:focus-visible, select:focus-visible {
   overflow-x: auto;
 }
 #report-content .mermaid svg {
-  max-width: 100%;
+  max-width: none;
   height: auto;
 }
 #report-content .mermaid-error {
