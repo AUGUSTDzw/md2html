@@ -1,0 +1,23 @@
+/* theme-15 — minimal-black — 极简黑白，留白 */
+.theme-15 {
+  --primary: #000;
+  --accent: #000;
+  --bg: #fff;
+  --text: #1a1a1a;
+  --muted: #a0a0a0;
+  --sub: #404040;
+  --rule: #000;
+  --font-display: "Inter","Noto Sans SC",sans-serif;
+  --font-body: "Inter","Noto Sans SC",sans-serif;
+  --line: 1.7;
+  --pad: 64px;
+  --r-h2-weight: 400;
+  --r-h2-track: 0.36em;
+  --r-name-weight: 300;
+  --r-name-ls: -0.005em;
+  --r-tag-bg: transparent;
+  --r-tag-color: var(--tag-text);
+  --r-tag-br: 0;
+  --r-tag-pad: 0 0 1px;
+  --r-tag-bb: 1px solid var(--tag-text);
+}

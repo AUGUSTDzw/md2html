@@ -1,0 +1,12 @@
+/* theme-08 — warm-orange — 暖橙，亲和 */
+.theme-08 {
+  --primary: #1a1a1a;
+  --accent: #e87c34;
+  --bg: #fff8f1;
+  --text: #1a1a1a;
+  --muted: #7c6b5e;
+  --sub: #2a2a2a;
+  --rule: #f3ddc2;
+  --font-display: "Manrope","Noto Sans SC",sans-serif;
+  --font-body: "Inter","Noto Sans SC",sans-serif;
+}

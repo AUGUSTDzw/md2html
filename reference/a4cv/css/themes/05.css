@@ -1,0 +1,17 @@
+/* theme-05 — navy-gold — 藏青古金，庄重 */
+.theme-05 {
+  --primary: #0b1d3a;
+  --accent: #b8862b;
+  --bg: #fffdf6;
+  --text: #0b1d3a;
+  --muted: #5e6473;
+  --sub: #1d2d4a;
+  --rule: #e6dec3;
+  --font-display: "Cormorant Garamond","Noto Serif SC",serif;
+  --font-body: "IBM Plex Serif","Source Serif 4","Noto Serif SC",serif;
+  --line: 1.6;
+  --r-name-weight: 700;
+  --r-name-ls: 0.005em;
+  --r-h2-weight: 600;
+  --r-h2-track: 0.24em;
+}

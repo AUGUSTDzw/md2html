@@ -1,0 +1,13 @@
+/* theme-20 — emerald — 翡翠绿，自然 */
+.theme-20 {
+  --primary: #064e3b;
+  --accent: #10b981;
+  --bg: #fff;
+  --text: #0a0a0a;
+  --muted: #6b7280;
+  --sub: #1a1a1a;
+  --rule: #d4e9df;
+  --font-display: "Manrope","Noto Sans SC",sans-serif;
+  --font-body: "Inter","Noto Sans SC",sans-serif;
+  --r-name-ls: -0.018em;
+}

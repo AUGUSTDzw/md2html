@@ -1,0 +1,15 @@
+/* theme-26 — beige-serif — 米色衬线，复古 */
+.theme-26 {
+  --primary: #3d3530;
+  --accent: #9c7e5a;
+  --bg: #fbf8f3;
+  --text: #1a1a1a;
+  --muted: #7b716a;
+  --sub: #3d3530;
+  --rule: #e6dccd;
+  --font-display: "Cormorant Garamond","Noto Serif SC",serif;
+  --font-body: "Cormorant Garamond","Noto Serif SC",serif;
+  --line: 1.75;
+  --r-name-weight: 300;
+  --r-name-ls: 0.02em;
+}

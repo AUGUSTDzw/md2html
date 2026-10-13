@@ -1,0 +1,20 @@
+/* theme-09 — bordeaux — 酒红，经典 */
+.theme-09 {
+  --primary: #a01818;
+  --accent: #a01818;
+  --bg: #fbf5ec;
+  --text: #1c1816;
+  --muted: #7a6e60;
+  --sub: #322b21;
+  --rule: #e6dcc6;
+  --font-display: "Playfair Display","Noto Serif SC",serif;
+  --font-body: "Lora","Noto Serif SC",serif;
+  --line: 1.7;
+  --r-h2-style: italic;
+  --r-h2-weight: 500;
+  --r-h2-transform: none;
+  --r-h2-track: 0;
+  --r-h2-size: 1.5;
+  --r-name-weight: 700;
+  --r-name-ls: 0.01em;
+}

@@ -1,0 +1,18 @@
+/* theme-34 — warm-nunito — 暖棕圆体，亲切 */
+.theme-34 {
+  --primary: #8c6a4f;
+  --accent: #cf8552;
+  --bg: #fdf8f1;
+  --text: #4a4036;
+  --muted: #a08c7a;
+  --sub: #5f5346;
+  --rule: #efe2d2;
+  --font-display: "Nunito","Noto Sans SC",sans-serif;
+  --font-body: "Nunito","Noto Sans SC",sans-serif;
+  --line: 1.65;
+  --radius: 12px;
+  --r-name-weight: 800;
+  --r-h2-track: 0.14em;
+  --r-tag-bg: var(--tag-bg);
+  --r-tag-color: var(--tag-text);
+}

@@ -1,0 +1,21 @@
+/* theme-29 — pink-accent — 粉红强调，时髦 */
+.theme-29 {
+  --primary: #16161a;
+  --accent: #e8456a;
+  --bg: #fffdf7;
+  --text: #16161a;
+  --muted: #6e6e7a;
+  --sub: #1f1f28;
+  --rule: #16161a;
+  --font-display: "Poppins","Noto Sans SC",sans-serif;
+  --font-body: "Inter","Noto Sans SC",sans-serif;
+  --radius: 12px;
+  --r-name-weight: 900;
+  --r-name-ls: -0.02em;
+  --r-h2-weight: 800;
+  --r-tag-bg: #fde68a;
+  --r-tag-color: #16161a;
+  --r-tag-fw: 600;
+  --r-desc-marker-color: #0ea5e9;
+  --r-row-l-color: var(--item);
+}

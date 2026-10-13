@@ -1,0 +1,14 @@
+/* theme-28 — orange-bold — 橙黑粗体，活力 */
+.theme-28 {
+  --primary: #0a0a0a;
+  --accent: #ea580c;
+  --bg: #fafafa;
+  --text: #0a0a0a;
+  --muted: #6b7280;
+  --sub: #171717;
+  --rule: #e5e5e5;
+  --font-display: "Space Grotesk","Noto Sans SC",sans-serif;
+  --font-body: "Inter","Noto Sans SC",sans-serif;
+  --r-name-weight: 800;
+  --r-name-ls: -0.025em;
+}

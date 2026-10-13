@@ -1,0 +1,25 @@
+/* theme-32 — red-stripe — 红条，醒目 */
+.theme-32 {
+  --primary: #000;
+  --accent: #e30613;
+  --bg: #fff;
+  --text: #111;
+  --muted: #8a8a8a;
+  --sub: #333;
+  --rule: #dcdcdc;
+  --font-display: "Inter","Noto Sans SC",sans-serif;
+  --font-body: "Inter","Noto Sans SC",sans-serif;
+  --line: 1.5;
+  --r-name-weight: 800;
+  --r-name-ls: -0.03em;
+  --r-h2-weight: 700;
+  --r-h2-transform: none;
+  --r-h2-track: 0.02em;
+  --r-h2-size: 1.15;
+  --r-tag-bg: transparent;
+  --r-tag-color: var(--tag-text);
+  --r-tag-br: 0;
+  --r-tag-pad: 0 1px 1px;
+  --r-tag-bb: 2px solid var(--tag-text);
+  --r-desc-marker-color: #e30613;
+}

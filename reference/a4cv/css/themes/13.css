@@ -1,0 +1,23 @@
+/* theme-13 — warm-serif — 暖灰衬线，古典 */
+.theme-13 {
+  --primary: #0a0a0a;
+  --accent: #525252;
+  --bg: #fbf9f3;
+  --text: #1a1a1a;
+  --muted: #605852;
+  --sub: #2c2620;
+  --rule: #e0d8c4;
+  --font-display: "Source Serif 4","Noto Serif SC",serif;
+  --font-body: "Source Serif 4","Noto Serif SC",serif;
+  --line: 1.72;
+  --r-h2-transform: none;
+  --r-h2-ls: 0.22em;
+  --r-h2-weight: 600;
+  --r-name-weight: 600;
+  --r-name-ls: 0.02em;
+  --r-tag-bg: transparent;
+  --r-tag-fs: italic;
+  --r-tag-color: var(--muted);
+  --r-tag-pad: 0;
+  --r-tag-br: 0;
+}

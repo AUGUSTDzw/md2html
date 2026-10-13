@@ -1,0 +1,15 @@
+/* theme-17 — dark-purple — 暗紫霓虹，深邃 */
+.theme-17 {
+  --primary: #0a0118;
+  --accent: #a855f7;
+  --bg: #0a0118;
+  --text: #e6e6f5;
+  --muted: #7a7a99;
+  --sub: #cfcfe6;
+  --rule: #1f1838;
+  --font-display: "Space Grotesk","Noto Sans SC",sans-serif;
+  --font-body: "Inter","Noto Sans SC",sans-serif;
+  --r-tag-bg: var(--tag-bg);
+  --r-tag-color: var(--tag-text);
+  --r-tag-bd: 1px solid var(--tag-border);
+}

@@ -1,0 +1,15 @@
+/* theme-23 — slate-serif — 石板灰衬线，稳重 */
+.theme-23 {
+  --primary: #1e293b;
+  --accent: #0f4c81;
+  --bg: #fff;
+  --text: #1a1a1a;
+  --muted: #64748b;
+  --sub: #1e293b;
+  --rule: #cbd5e1;
+  --font-display: "Source Serif 4","Noto Serif SC",serif;
+  --font-body: "Source Serif 4","Noto Serif SC",serif;
+  --line: 1.7;
+  --r-name-weight: 600;
+  --r-name-ls: 0.01em;
+}

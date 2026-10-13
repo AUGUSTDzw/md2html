@@ -1,0 +1,14 @@
+/* theme-06 — blue-clean — 纯净蓝，清亮 */
+.theme-06 {
+  --primary: #003a70;
+  --accent: #003a70;
+  --bg: #fff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --sub: #374151;
+  --rule: #dbe3ea;
+  --font-display: "Inter","Noto Sans SC",sans-serif;
+  --font-body: "Inter","Noto Sans SC",sans-serif;
+  --r-desc-li-style: none;
+  --r-desc-marker-color: var(--accent);
+}

@@ -1,0 +1,19 @@
+/* theme-31 — brown-soft — 棕灰柔和，质朴 */
+.theme-31 {
+  --primary: #6e655c;
+  --accent: #a98f76;
+  --bg: #f7f4f0;
+  --text: #3d3833;
+  --muted: #968b80;
+  --sub: #57504a;
+  --rule: #e5ded4;
+  --font-display: "Lora","Noto Serif SC",serif;
+  --font-body: "Source Sans 3","Noto Sans SC",sans-serif;
+  --line: 1.68;
+  --r-name-weight: 600;
+  --r-name-ls: 0.01em;
+  --r-h2-weight: 600;
+  --r-h2-track: 0.2em;
+  --r-tag-bg: var(--tag-bg);
+  --r-tag-color: var(--tag-text);
+}

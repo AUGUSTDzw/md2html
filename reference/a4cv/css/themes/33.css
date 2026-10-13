@@ -1,0 +1,22 @@
+/* theme-33 — red-serif-warm — 暖红衬线，温润 */
+.theme-33 {
+  --primary: #26292a;
+  --accent: #9e2b25;
+  --bg: #faf7f2;
+  --text: #26292a;
+  --muted: #7d7f78;
+  --sub: #3a3e3e;
+  --rule: #ddd6c9;
+  --font-display: "Noto Serif SC",serif;
+  --font-body: "Noto Serif SC",serif;
+  --line: 1.78;
+  --r-name-weight: 600;
+  --r-name-ls: 0.12em;
+  --r-h2-weight: 600;
+  --r-h2-track: 0.4em;
+  --r-tag-bg: transparent;
+  --r-tag-color: var(--tag-text);
+  --r-tag-bd: 1px solid var(--tag-border);
+  --r-tag-br: 2px;
+  --r-sub-ls: 0.06em;
+}

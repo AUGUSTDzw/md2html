@@ -1,0 +1,16 @@
+/* theme-18 — navy-serif — 深蓝衬线，传统 */
+.theme-18 {
+  --primary: #1e3a8a;
+  --accent: #b8862b;
+  --bg: #fff;
+  --text: #1f2937;
+  --muted: #5e6473;
+  --sub: #1f2937;
+  --rule: #dbe2ec;
+  --font-display: "Source Serif 4","Noto Serif SC",serif;
+  --font-body: "Source Sans 3","Noto Sans SC",sans-serif;
+  --r-h2-weight: 600;
+  --r-h2-track: 0.22em;
+  --r-name-family: var(--font-display);
+  --r-name-ls: 0.01em;
+}

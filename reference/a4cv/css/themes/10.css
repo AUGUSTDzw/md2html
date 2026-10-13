@@ -1,0 +1,13 @@
+/* theme-10 — rose — 暗粉玫瑰，现代 */
+.theme-10 {
+  --primary: #111;
+  --accent: #b03a72;
+  --bg: #fff;
+  --text: #1a1a1a;
+  --muted: #6b7280;
+  --sub: #1a1a1a;
+  --rule: #e5e7eb;
+  --font-display: "DM Serif Display","Noto Serif SC",serif;
+  --font-body: "Inter","Noto Sans SC",sans-serif;
+  --line: 1.55;
+}

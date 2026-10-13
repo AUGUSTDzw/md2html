@@ -1,0 +1,12 @@
+/* theme-22 — forest — 森林绿，沉静 */
+.theme-22 {
+  --primary: #1a3c34;
+  --accent: #2f9e77;
+  --bg: #fff;
+  --text: #0a0a0a;
+  --muted: #6b7280;
+  --sub: #1a1a1a;
+  --rule: #d6e5de;
+  --font-display: "Manrope","Noto Sans SC",sans-serif;
+  --font-body: "Inter","Noto Sans SC",sans-serif;
+}

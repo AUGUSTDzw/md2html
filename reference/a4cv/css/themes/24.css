@@ -1,0 +1,12 @@
+/* theme-24 — blue-modern — 现代蓝，清爽 */
+.theme-24 {
+  --primary: #0f172a;
+  --accent: #3b82f6;
+  --bg: #fff;
+  --text: #1a1a1a;
+  --muted: #64748b;
+  --sub: #1e293b;
+  --rule: #e2e8f0;
+  --font-display: "Manrope","Noto Sans SC",sans-serif;
+  --font-body: "Inter","Noto Sans SC",sans-serif;
+}

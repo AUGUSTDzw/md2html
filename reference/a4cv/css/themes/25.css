@@ -1,0 +1,14 @@
+/* theme-25 — red-serif — 红衬线，经典 */
+.theme-25 {
+  --primary: #0a0a0a;
+  --accent: #dc2626;
+  --bg: #fafaf9;
+  --text: #171717;
+  --muted: #737373;
+  --sub: #1f1f1f;
+  --rule: #d4d4d4;
+  --font-display: "IBM Plex Serif","Noto Serif SC",serif;
+  --font-body: "Lora","Noto Serif SC",serif;
+  --line: 1.65;
+  --r-name-weight: 700;
+}

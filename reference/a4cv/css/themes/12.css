@@ -1,0 +1,12 @@
+/* theme-12 — teal — 青碧，清新 */
+.theme-12 {
+  --primary: #0f766e;
+  --accent: #14b8a6;
+  --bg: #fff;
+  --text: #0f172a;
+  --muted: #5b6772;
+  --sub: #1f2a37;
+  --rule: #cce4e1;
+  --font-display: "Source Sans 3","Noto Sans SC",sans-serif;
+  --font-body: "Source Sans 3","Noto Sans SC",sans-serif;
+}

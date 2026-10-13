@@ -1,0 +1,50 @@
+/* theme-01 — tech-terminal — 终端绿，行号编号 */
+.theme-01 {
+  --primary: #0a0a0a;
+  --accent: #00d084;
+  --bg: #0a0a0a;
+  --text: #e3e5e8;
+  --muted: #7a8088;
+  --sub: #cfd1d4;
+  --rule: #1f2227;
+  --font-display: "JetBrains Mono","IBM Plex Mono","Noto Sans SC",monospace;
+  --font-body: "JetBrains Mono","IBM Plex Mono","Noto Sans SC",monospace;
+  --line: 1.65;
+  --r-name-prefix: "$ ";
+  --r-sub-prefix: "# ";
+  --r-name-weight: 400;
+  --r-name-ls: normal;
+  --r-name-transform: none;
+  --r-desc-marker-content: "\203A ";
+}
+.theme-01 .r-tag {
+  background: transparent;
+  color: var(--tag-text);
+}
+.theme-01 .r-h2 {
+  color: var(--heading);
+  letter-spacing: 0.14em;
+}
+.theme-01 .r-row .l {
+  color: var(--item);
+}
+.theme-01 .r-row .r {
+  color: var(--muted);
+}
+.theme-01 .r-header {
+  background: #0a0a0a;
+  border-bottom: 1px solid #1a1d22;
+}
+.theme-01 .r-name::before {
+  content: "$ ";
+  color: var(--accent);
+  font-weight: 400;
+}
+.theme-01 .r-sub::before {
+  content: "# ";
+  color: var(--muted);
+}
+.theme-01 .r-desc li::marker {
+  color: var(--accent);
+  content: "\203A ";
+}
