@@ -133,11 +133,11 @@ button:focus-visible, select:focus-visible {
   color: var(--text);
 }
 #report-content h1 {
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 800;
   color: var(--heading);
-  margin: 0 0 24px;
-  padding-bottom: 12px;
+  margin: 0 0 28px;
+  padding-bottom: 14px;
   border-bottom: 2px solid var(--border);
   letter-spacing: -0.01em;
 }
@@ -145,30 +145,53 @@ button:focus-visible, select:focus-visible {
   font-size: 22px;
   font-weight: 700;
   color: var(--heading);
-  margin: 40px 0 16px;
+  margin: 48px 0 18px;
   padding-left: 12px;
   border-left: 4px solid var(--accent);
 }
 #report-content h3 {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 700;
   color: var(--heading);
   margin: 32px 0 12px;
+  padding-left: 16px;
+  border-left: 2px solid var(--border);
 }
 #report-content h4 {
   font-size: 15px;
-  font-weight: 700;
-  color: var(--heading);
-  margin: 24px 0 8px;
+  font-weight: 650;
+  color: var(--muted);
+  margin: 24px 0 10px;
+  padding-left: 32px;
+  position: relative;
+}
+#report-content h4::before {
+  content: "";
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.5;
+  transform: translateY(-50%);
 }
 #report-content p {
   margin: 0 0 16px;
 }
 #report-content ul, #report-content ol {
   margin: 0 0 16px;
-  padding-left: 24px;
+  padding-left: 28px;
+}
+#report-content ul ul, #report-content ol ol,
+#report-content ul ol, #report-content ol ul {
+  margin: 6px 0 4px;
 }
 #report-content li {
+  margin: 6px 0;
+}
+#report-content li > p {
   margin: 4px 0;
 }
 #report-content a {
