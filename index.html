@@ -139,11 +139,13 @@
             wrap3.appendChild(el);
           } else if (tag === "H4") {
             wrap4 = null;
-            const parent = wrap3 || container;
             wrap4 = document.createElement("div");
             wrap4.className = "section-h4";
-            parent.insertBefore(wrap4, el);
+            el.parentNode.insertBefore(wrap4, el);
             wrap4.appendChild(el);
+            if (wrap3 && wrap4.parentNode !== wrap3) {
+              wrap3.appendChild(wrap4);
+            }
           } else {
             if (wrap4) wrap4.appendChild(el);
             else if (wrap3) wrap3.appendChild(el);
