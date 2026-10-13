@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="midnight">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>md2html — Markdown 报告转换器</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;600;700;800;900&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/themes.css">
+</head>
+<body>
+  <div class="app">
+    <!-- TOP BAR -->
+    <div class="topbar">
+      <div class="brand">
+        <b>md2html</b>
+        <span>Report Converter</span>
+      </div>
+      <div class="spacer"></div>
+      <input type="file" id="file-input" accept=".md,.markdown,.txt" style="display:none">
+      <button class="tbtn" id="import-btn">导入 .md</button>
+      <select class="theme-select" id="theme-select">
+        <option value="midnight">Midnight</option>
+        <option value="parchment">Parchment</option>
+        <option value="academic">Academic</option>
+        <option value="terminal">Terminal</option>
+        <option value="slate">Slate</option>
+      </select>
+      <button class="tbtn primary" id="export-btn">导出 HTML</button>
+    </div>
+    <!-- CANVAS -->
+    <div class="canvas">
+      <div class="report-page">
+        <div id="report-content">
+          <div class="loading">正在加载报告…</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VENDOR SCRIPTS -->
+  <script src="vendor/marked.min.js"></script>
+  <script>
+    window.__hlCjs = { module: window.module, exports: window.exports, define: window.define };
+    window.module = undefined; window.exports = undefined; window.define = undefined;
+  </script>
+  <script src="vendor/highlight.min.js"></script>
+  <script>
+    window.module = window.__hlCjs.module;
+    window.exports = window.__hlCjs.exports;
+    window.define = window.__hlCjs.define;
+    delete window.__hlCjs;
+  </script>
+  <script src="vendor/abap.min.js"></script>
+  <script src="vendor/mermaid.min.js"></script>
+
+  <!-- MAIN SCRIPT -->
+  <script>
+    "use strict";
+    (function () {
+      let currentMdText = "";
+
+      mermaid.initialize({
+        startOnLoad: false,
+        theme: "base",
+        themeVariables: {
+          fontFamily: "Inter, sans-serif",
+          fontSize: "14px",
+        },
+        securityLevel: "loose",
+        flowchart: { useMaxWidth: true, htmlLabels: true },
+        sequence: { useMaxWidth: true },
+      });
+
+      function escapeHtml(str) {
+        const div = document.createElement("div");
+        div.textContent = str;
+        return div.innerHTML;
+      }
+
+      const renderer = {
+        code({ text, lang }) {
+          const escaped = escapeHtml(text);
+          if (lang === "mermaid") {
+            return `<div class="mermaid">${escaped}</div>`;
+          }
+          const langLabel = lang || "text";
+          const langClass = lang ? `language-${lang}` : "language-text";
+          return `<div class="code-block">
+            <div class="code-header"><span>${langLabel.toUpperCase()}</span></div>
+            <pre><code class="${langClass}">${escaped}</code></pre>
+          </div>`;
+        },
+        heading({ text, depth }) {
+          const slug = text.replace(/<[^>]+>/g, "").trim()
+            .toLowerCase().replace(/[^\w\u4e00-\u9fff]+/g, "-").replace(/^-|-$/g, "");
+          let cls = "";
+          if (depth === 2) {
+            if (/🔴|P0/i.test(text)) cls = " priority-p0";
+            else if (/🟠|P1/i.test(text)) cls = " priority-p1";
+            else if (/🟡|P2/i.test(text)) cls = " priority-p2";
+            else if (/🟢|P3/i.test(text)) cls = " priority-p3";
+          }
+          return `<h${depth} id="${slug}" class="${cls.trim()}">${text}</h${depth}>`;
+        },
+      };
+      marked.use({ renderer, gfm: true, breaks: false });
+
+      async function renderMarkdown(mdText) {
+        currentMdText = mdText;
+        const container = document.getElementById("report-content");
+        container.innerHTML = '<div class="loading">正在渲染…</div>';
+
+        let html = marked.parse(mdText);
+        container.innerHTML = html;
+
+        container.querySelectorAll("table").forEach((table) => {
+          if (table.parentElement.classList.contains("table-wrap")) return;
+          const wrap = document.createElement("div");
+          wrap.className = "table-wrap";
+          table.parentNode.insertBefore(wrap, table);
+          wrap.appendChild(table);
+        });
+
+        container.querySelectorAll("pre code").forEach((block) => {
+          if (block.classList.contains("language-mermaid")) return;
+          try {
+            hljs.highlightElement(block);
+          } catch (e) {
+          }
+        });
+
+        const mermaidDivs = container.querySelectorAll(".mermaid");
+        for (let i = 0; i < mermaidDivs.length; i++) {
+          const div = mermaidDivs[i];
+          const code = div.textContent;
+          try {
+            const id = "mermaid-" + Date.now() + "-" + i;
+            const { svg } = await mermaid.render(id, code);
+            div.innerHTML = svg;
+          } catch (e) {
+            div.className = "mermaid-error";
+            div.innerHTML = `<strong>Mermaid 渲染失败:</strong><pre>${escapeHtml(e.message || e)}</pre>`;
+          }
+        }
+      }
+
+      async function loadFile(url) {
+        try {
+          const resp = await fetch(url);
+          if (!resp.ok) throw new Error("HTTP " + resp.status);
+          return await resp.text();
+        } catch (e) {
+          showEmpty(e.message);
+          return null;
+        }
+      }
+
+      function showEmpty(msg) {
+        document.getElementById("report-content").innerHTML =
+          `<div class="empty-state">
+            <div class="icon">📄</div>
+            <p>未加载报告</p>
+            <div class="hint">${msg || "点击「导入 .md」加载文件"}</div>
+          </div>`;
+      }
+
+      const themeSelect = document.getElementById("theme-select");
+      themeSelect.addEventListener("change", async (e) => {
+        document.documentElement.dataset.theme = e.target.value;
+        if (currentMdText) {
+          await renderMarkdown(currentMdText);
+        }
+      });
+
+      const fileInput = document.getElementById("file-input");
+      document.getElementById("import-btn").addEventListener("click", () => fileInput.click());
+      fileInput.addEventListener("change", async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const text = await file.text();
+        await renderMarkdown(text);
+        fileInput.value = "";
+      });
+
+      const canvas = document.querySelector(".canvas");
+      canvas.addEventListener("dragover", (e) => { e.preventDefault(); });
+      canvas.addEventListener("drop", async (e) => {
+        e.preventDefault();
+        const file = e.dataTransfer.files[0];
+        if (!file || !/\.(md|markdown|txt)$/i.test(file.name)) return;
+        const text = await file.text();
+        await renderMarkdown(text);
+      });
+
+      document.getElementById("export-btn").addEventListener("click", exportHtml);
+
+      async function exportHtml() {
+        const theme = document.documentElement.dataset.theme;
+        const reportHtml = document.getElementById("report-content").innerHTML;
+
+        let appCss = "", themesCss = "";
+        try {
+          const [r1, r2] = await Promise.all([
+            fetch("css/app.css"),
+            fetch("css/themes.css"),
+          ]);
+          appCss = await r1.text();
+          themesCss = await r2.text();
+        } catch (e) {
+          alert("导出失败: 无法读取 CSS 文件 — " + e.message);
+          return;
+        }
+
+        const h1 = reportHtml.match(/<h1[^>]*>(.*?)<\/h1>/i);
+        const title = h1 ? h1[1].replace(/<[^>]+>/g, "").trim() : "report";
+
+        const html = `<!doctype html>
+<html lang="zh-CN" data-theme="${theme}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${title}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;600;700;800;900&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+${appCss}
+
+${themesCss}
+
+body { overflow: auto; }
+.app { display: block; height: auto; }
+.canvas { overflow: visible; padding: 24px; }
+.report-page { max-width: 860px; margin: 0 auto; }
+</style>
+</head>
+<body>
+<div class="app">
+<div class="canvas">
+<div class="report-page">
+<div id="report-content">
+${reportHtml}
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>`;
+
+        const blob = new Blob([html], { type: "text/html;charset=utf-8" });
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = title + ".html";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(a.href);
+      }
+
+      (async function init() {
+        const md = await loadFile("zalvtree-report.md");
+        if (md) await renderMarkdown(md);
+      })();
+    })();
+  </script>
+</body>
+</html>
