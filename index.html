@@ -212,12 +212,17 @@
           const div = mermaidDivs[i];
           const code = div.textContent;
           try {
-            const id = "mermaid-" + Date.now() + "-" + i;
-            const { svg } = await mermaid.render(id, code);
-            div.innerHTML = svg;
+            const id = "mmd-" + Date.now() + "-" + i;
+            const result = await mermaid.render(id, code);
+            const svg = typeof result === "string" ? result : (result.svg || "");
+            if (svg) {
+              div.innerHTML = svg;
+            } else {
+              throw new Error("mermaid.render returned empty result");
+            }
           } catch (e) {
             div.className = "mermaid-error";
-            div.innerHTML = `<strong>Mermaid 渲染失败:</strong><pre>${escapeHtml(e.message || e)}</pre>`;
+            div.innerHTML = '<strong>Mermaid \u6e32\u67d3\u5931\u8d25:</strong><pre>' + escapeHtml(String(e.message || e)) + '</pre>';
           }
         }
       }
