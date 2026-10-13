@@ -208,6 +208,18 @@ button:focus-visible, select:focus-visible {
   color: var(--heading);
 }
 
+/* ============ SECTION INDENTATION ============ */
+#report-content .indent-1 {
+  margin-left: 16px;
+}
+#report-content .indent-2 {
+  margin-left: 32px;
+}
+@media (max-width: 920px) {
+  #report-content .indent-1 { margin-left: 12px; }
+  #report-content .indent-2 { margin-left: 20px; }
+}
+
 /* ============ TABLES ============ */
 #report-content .table-wrap {
   overflow-x: auto;
