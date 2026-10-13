@@ -278,6 +278,73 @@
 :root[data-theme="apple"] #report-content .mermaid {
   border-radius: 10px;
 }
+
+/* ============ FORMAL THEME ============ */
+:root[data-theme="formal"] {
+  --bg: #ffffff;
+  --page-bg: #fdfdfb;
+  --bg-dot: rgba(30, 58, 95, 0.03);
+  --text: #2d2d2d;
+  --heading: #1a1a1a;
+  --muted: #6b6b6b;
+  --accent: #1e3a5f;
+  --border: #d4d4d4;
+  --code-bg: #f5f5f5;
+  --code-text: #2d2d2d;
+  --code-border: #e0e0e0;
+  --code-header-bg: #eeeeee;
+  --code-header-text: #6b6b6b;
+  --inline-code-bg: #f0f0f0;
+  --inline-code-text: #1e3a5f;
+  --table-header-bg: #f0f0f0;
+  --table-header-text: #1a1a1a;
+  --table-border: #d4d4d4;
+  --table-stripe-bg: #fafafa;
+  --blockquote-bg: #f7f7f7;
+  --blockquote-border: #1e3a5f;
+  --blockquote-text: #555555;
+  --mermaid-bg: #f5f5f5;
+  --hl-keyword: #6f42c1;
+  --hl-string: #22863a;
+  --hl-comment: #6b6b6b;
+  --hl-number: #005cc5;
+  --hl-title: #1e3a5f;
+  --hl-attr: #005cc5;
+  --hl-built-in: #032f62;
+  --hl-type: #1e3a5f;
+  --hl-literal: #005cc5;
+  --hl-meta: #6b6b6b;
+  --hl-variable: #b31d28;
+  --hl-symbol: #032f62;
+  --hl-deletion: #b31d28;
+  --hl-addition: #22863a;
+}
+
+/* ============ FORMAL FONT OVERRIDE ============ */
+:root[data-theme="formal"] #report-content {
+  font-family: Georgia, "Noto Serif SC", "Times New Roman", serif;
+}
+:root[data-theme="formal"] #report-content h1,
+:root[data-theme="formal"] #report-content h2,
+:root[data-theme="formal"] #report-content h3,
+:root[data-theme="formal"] #report-content h4 {
+  font-family: Georgia, "Noto Serif SC", "Times New Roman", serif;
+  letter-spacing: 0.01em;
+}
+:root[data-theme="formal"] #report-content .code-block code,
+:root[data-theme="formal"] #report-content code {
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+}
+:root[data-theme="formal"] .report-page {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.04);
+}
+:root[data-theme="formal"] #report-content h1 {
+  border-bottom: 3px double var(--border);
+}
+:root[data-theme="formal"] #report-content h2 {
+  border-left-width: 3px;
+}
+
 :root[data-theme="academic"] #report-content {
   font-family: Georgia, "Noto Serif SC", "Times New Roman", serif;
 }
