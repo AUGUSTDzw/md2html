@@ -205,7 +205,79 @@
   --hl-addition: #86efac;
 }
 
-/* ============ ACADEMIC SERIF FONT OVERRIDE ============ */
+/* ---- Apple ---- */
+:root[data-theme="apple"] {
+  --bg: #f5f5f7;
+  --page-bg: #ffffff;
+  --bg-dot: rgba(0, 0, 0, 0.025);
+  --text: #1d1d1f;
+  --heading: #1d1d1f;
+  --muted: #86868b;
+  --accent: #007aff;
+  --border: #d2d2d7;
+  --code-bg: #f5f5f7;
+  --code-text: #1d1d1f;
+  --code-border: #e5e5ea;
+  --code-header-bg: #efeef2;
+  --code-header-text: #86868b;
+  --inline-code-bg: #efeef2;
+  --inline-code-text: #007aff;
+  --table-header-bg: #f5f5f7;
+  --table-header-text: #1d1d1f;
+  --table-border: #d2d2d7;
+  --table-stripe-bg: #fbfbfd;
+  --blockquote-bg: #f5f5f7;
+  --blockquote-border: #007aff;
+  --blockquote-text: #6e6e73;
+  --mermaid-bg: #f5f5f7;
+  --hl-keyword: #9b2393;
+  --hl-string: #c41a16;
+  --hl-comment: #8e8e93;
+  --hl-number: #1c00cf;
+  --hl-title: #3900d0;
+  --hl-attr: #c41a16;
+  --hl-built-in: #9b2393;
+  --hl-type: #3900d0;
+  --hl-literal: #c41a16;
+  --hl-meta: #8e8e93;
+  --hl-variable: #1c00cf;
+  --hl-symbol: #9b2393;
+  --hl-deletion: #c41a16;
+  --hl-addition: #2e7d32;
+}
+
+/* ============ APPLE FONT OVERRIDE ============ */
+:root[data-theme="apple"] #report-content {
+  font-family: -apple-system, "SF Pro Text", "SF Pro Display", Inter, "Noto Sans SC", system-ui, sans-serif;
+}
+:root[data-theme="apple"] #report-content h1,
+:root[data-theme="apple"] #report-content h2,
+:root[data-theme="apple"] #report-content h3,
+:root[data-theme="apple"] #report-content h4 {
+  font-family: -apple-system, "SF Pro Display", Inter, "Noto Sans SC", system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+:root[data-theme="apple"] #report-content .code-block code,
+:root[data-theme="apple"] #report-content code {
+  font-family: "SF Mono", "JetBrains Mono", "Fira Code", monospace;
+}
+:root[data-theme="apple"] .report-page {
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 12px 32px rgba(0, 0, 0, 0.06);
+}
+:root[data-theme="apple"] #report-content h2 {
+  border-left-width: 3px;
+  border-radius: 0 4px 4px 0;
+}
+:root[data-theme="apple"] #report-content .code-block {
+  border-radius: 10px;
+}
+:root[data-theme="apple"] #report-content .code-header {
+  border-radius: 10px 10px 0 0;
+}
+:root[data-theme="apple"] #report-content .mermaid {
+  border-radius: 10px;
+}
 :root[data-theme="academic"] #report-content {
   font-family: Georgia, "Noto Serif SC", "Times New Roman", serif;
 }
