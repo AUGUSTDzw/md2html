@@ -62,17 +62,54 @@
     (function () {
       let currentMdText = "";
 
-      mermaid.initialize({
-        startOnLoad: false,
-        theme: "base",
-        themeVariables: {
-          fontFamily: "Inter, sans-serif",
-          fontSize: "14px",
-        },
-        securityLevel: "loose",
-        flowchart: { useMaxWidth: true, htmlLabels: true },
-        sequence: { useMaxWidth: true },
-      });
+      function cssVar(name) {
+        return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+      }
+
+      function syncMermaidTheme() {
+        const isDark = cssVar("--bg") && (() => {
+          const hex = cssVar("--bg").replace("#", "");
+          if (hex.length === 6) {
+            const r = parseInt(hex.slice(0,2), 16);
+            const g = parseInt(hex.slice(2,4), 16);
+            const b = parseInt(hex.slice(4,6), 16);
+            return (r + g + b) / 3 < 128;
+          }
+          return false;
+        })();
+
+        const lineCol = isDark ? cssVar("--muted") : "#444";
+        const nodeFill = cssVar("--code-header-bg") || (isDark ? "#1e2128" : "#eeeef0");
+        const nodeText = cssVar("--heading") || (isDark ? "#e8eaf0" : "#111");
+        const nodeBorder = cssVar("--border") || (isDark ? "#3a3d45" : "#d1d5db");
+        const lblBg = cssVar("--mermaid-bg") || (isDark ? "#0c0e13" : "#f7f7f9");
+        const txtCol = cssVar("--text") || (isDark ? "#c8cad3" : "#1a1a1a");
+        const accentCol = cssVar("--accent") || (isDark ? "#818cf8" : "#1e40af");
+
+        mermaid.initialize({
+          startOnLoad: false,
+          theme: "base",
+          themeVariables: {
+            fontFamily: "Inter, Noto Sans SC, sans-serif",
+            fontSize: "14px",
+            lineColor: lineCol,
+            textColor: txtCol,
+            background: lblBg,
+            mainBkg: nodeFill,
+            primaryColor: nodeFill,
+            primaryTextColor: nodeText,
+            primaryBorderColor: accentCol,
+            secondaryColor: nodeFill,
+            tertiaryColor: nodeFill,
+            edgeLabelBackground: lblBg,
+            clusterBkg: lblBg,
+            clusterBorder: nodeBorder,
+          },
+          securityLevel: "loose",
+          flowchart: { useMaxWidth: true, htmlLabels: true, curve: "basis" },
+          sequence: { useMaxWidth: true, actorMargin: 50, boxMargin: 10 },
+        });
+      }
 
       function escapeHtml(str) {
         const div = document.createElement("div");
@@ -133,6 +170,7 @@
         });
 
         const mermaidDivs = container.querySelectorAll(".mermaid");
+        syncMermaidTheme();
         for (let i = 0; i < mermaidDivs.length; i++) {
           const div = mermaidDivs[i];
           const code = div.textContent;
