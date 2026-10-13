@@ -150,10 +150,23 @@
       async function loadFile(url) {
         try {
           const resp = await fetch(url);
-          if (!resp.ok) throw new Error("HTTP " + resp.status);
-          return await resp.text();
+          if (resp.ok) return await resp.text();
         } catch (e) {
-          showEmpty(e.message);
+        }
+        try {
+          return await new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.overrideMimeType("text/plain; charset=utf-8");
+            xhr.onload = () => {
+              if (xhr.status === 0 || xhr.status === 200) resolve(xhr.responseText);
+              else reject(new Error("HTTP " + xhr.status));
+            };
+            xhr.onerror = () => reject(new Error("XHR failed"));
+            xhr.send();
+          });
+        } catch (e) {
+          showEmpty("无法自动加载报告文件。请点击「导入 .md」按钮手动选择文件。");
           return null;
         }
       }
@@ -197,22 +210,25 @@
 
       document.getElementById("export-btn").addEventListener("click", exportHtml);
 
+      function collectCss() {
+        let css = "";
+        for (const sheet of document.styleSheets) {
+          try {
+            const rules = sheet.cssRules;
+            if (!rules) continue;
+            for (const rule of rules) {
+              css += rule.cssText + "\n";
+            }
+          } catch (e) {
+          }
+        }
+        return css;
+      }
+
       async function exportHtml() {
         const theme = document.documentElement.dataset.theme;
         const reportHtml = document.getElementById("report-content").innerHTML;
-
-        let appCss = "", themesCss = "";
-        try {
-          const [r1, r2] = await Promise.all([
-            fetch("css/app.css"),
-            fetch("css/themes.css"),
-          ]);
-          appCss = await r1.text();
-          themesCss = await r2.text();
-        } catch (e) {
-          alert("导出失败: 无法读取 CSS 文件 — " + e.message);
-          return;
-        }
+        const allCss = collectCss();
 
         const h1 = reportHtml.match(/<h1[^>]*>(.*?)<\/h1>/i);
         const title = h1 ? h1[1].replace(/<[^>]+>/g, "").trim() : "report";
@@ -227,9 +243,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;600;700;800;900&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-${appCss}
-
-${themesCss}
+${allCss}
 
 body { overflow: auto; }
 .app { display: block; height: auto; }
