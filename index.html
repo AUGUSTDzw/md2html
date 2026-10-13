@@ -119,20 +119,30 @@
       }
 
       function addIndentation(container) {
-        let level = 0;
-        for (const el of container.children) {
+        const children = Array.from(container.children);
+        let wrap3 = null;
+        let wrap4 = null;
+        for (const el of children) {
           const tag = el.tagName;
           if (tag === "H1" || tag === "H2") {
-            level = 0;
+            wrap3 = null;
+            wrap4 = null;
           } else if (tag === "H3") {
-            level = 1;
+            wrap4 = null;
+            wrap3 = document.createElement("div");
+            wrap3.className = "section-h3";
+            container.insertBefore(wrap3, el);
+            wrap3.appendChild(el);
           } else if (tag === "H4") {
-            level = 2;
-          }
-          el.classList.remove("indent-1", "indent-2");
-          if (tag !== "H1" && tag !== "H2" && tag !== "H3" && tag !== "H4") {
-            if (level >= 1) el.classList.add("indent-1");
-            if (level >= 2) el.classList.add("indent-2");
+            wrap4 = null;
+            const parent = wrap3 || container;
+            wrap4 = document.createElement("div");
+            wrap4.className = "section-h4";
+            parent.insertBefore(wrap4, el);
+            wrap4.appendChild(el);
+          } else {
+            if (wrap4) wrap4.appendChild(el);
+            else if (wrap3) wrap3.appendChild(el);
           }
         }
       }

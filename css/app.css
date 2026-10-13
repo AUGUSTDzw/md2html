@@ -209,15 +209,15 @@ button:focus-visible, select:focus-visible {
 }
 
 /* ============ SECTION INDENTATION ============ */
-#report-content .indent-1 {
-  margin-left: 16px;
+#report-content .section-h3 {
+  padding-left: 16px;
 }
-#report-content .indent-2 {
-  margin-left: 32px;
+#report-content .section-h4 {
+  padding-left: 16px;
 }
 @media (max-width: 920px) {
-  #report-content .indent-1 { margin-left: 12px; }
-  #report-content .indent-2 { margin-left: 20px; }
+  #report-content .section-h3 { padding-left: 12px; }
+  #report-content .section-h4 { padding-left: 12px; }
 }
 
 /* ============ TABLES ============ */
