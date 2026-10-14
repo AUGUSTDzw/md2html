@@ -319,7 +319,6 @@ button:focus-visible, select:focus-visible {
   margin: 0 auto;
   height: auto;
   overflow: visible;
-  transform-origin: top left;
 }
 #report-content .mermaid foreignObject {
   overflow: visible;

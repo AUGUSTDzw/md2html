@@ -183,14 +183,19 @@
       marked.use({ renderer, gfm: true, breaks: false });
 
       function setupMermaidZoom(div) {
-        const svg = div.querySelector("svg");
+        var svg = div.querySelector("svg");
         if (!svg) return;
-        const vb = svg.viewBox && svg.viewBox.baseVal;
-        const naturalW = (vb && vb.width) || parseFloat(svg.getAttribute("width")) || 800;
-        const cs = getComputedStyle(div);
-        const availW = div.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
-        const fitScale = Math.min(1, availW / naturalW);
-        let zoom = fitScale;
+        var vb = svg.viewBox && svg.viewBox.baseVal;
+        var naturalW = (vb && vb.width) || parseFloat(svg.getAttribute("width")) || 800;
+        var naturalH = (vb && vb.height) || parseFloat(svg.getAttribute("height")) || 600;
+        var cs = getComputedStyle(div);
+        var padX = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
+        var padY = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
+        var borderH = parseFloat(cs.borderTopWidth) + parseFloat(cs.borderBottomWidth);
+        var availW = div.clientWidth - padX;
+        var fitScale = Math.min(1, availW / naturalW);
+        var zoom = fitScale;
+        div.style.height = (naturalH * fitScale + padY + borderH) + "px";
         function applyZoom() {
           svg.style.width = (naturalW * zoom) + "px";
           svg.style.height = "auto";
@@ -199,7 +204,7 @@
         div.addEventListener("wheel", function (e) {
           if (!e.ctrlKey) return;
           e.preventDefault();
-          const factor = e.deltaY > 0 ? 0.9 : 1.1;
+          var factor = e.deltaY > 0 ? 0.9 : 1.1;
           zoom = Math.max(0.1, Math.min(5, zoom * factor));
           applyZoom();
         }, { passive: false });
