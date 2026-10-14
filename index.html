@@ -182,6 +182,34 @@
       };
       marked.use({ renderer, gfm: true, breaks: false });
 
+      function setupMermaidZoom(div) {
+        const svg = div.querySelector("svg");
+        if (!svg) return;
+        const vb = svg.viewBox && svg.viewBox.baseVal;
+        const naturalW = (vb && vb.width) || parseFloat(svg.getAttribute("width")) || 800;
+        const cs = getComputedStyle(div);
+        const availW = div.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+        const fitScale = Math.min(1, availW / naturalW);
+        let zoom = fitScale;
+        function applyZoom() {
+          svg.style.width = (naturalW * zoom) + "px";
+          svg.style.height = "auto";
+        }
+        applyZoom();
+        div.addEventListener("wheel", function (e) {
+          if (!e.ctrlKey) return;
+          e.preventDefault();
+          const factor = e.deltaY > 0 ? 0.9 : 1.1;
+          zoom = Math.max(0.1, Math.min(5, zoom * factor));
+          applyZoom();
+        }, { passive: false });
+        svg.addEventListener("dblclick", function (e) {
+          e.preventDefault();
+          zoom = fitScale;
+          applyZoom();
+        });
+      }
+
       async function renderMarkdown(mdText) {
         currentMdText = mdText;
         const container = document.getElementById("report-content");
@@ -217,9 +245,10 @@
           try {
             const id = "mmd-" + Date.now() + "-" + i;
             const result = await mermaid.render(id, code);
-            const svg = typeof result === "string" ? result : (result.svg || "");
-            if (svg) {
-              div.innerHTML = svg;
+            const svgStr = typeof result === "string" ? result : (result.svg || "");
+            if (svgStr) {
+              div.innerHTML = svgStr;
+              setupMermaidZoom(div);
             } else {
               throw new Error("mermaid.render returned empty result");
             }
