@@ -116,10 +116,10 @@ button:focus-visible, select:focus-visible {
 /* ============ REPORT PAGE ============ */
 .report-page {
   width: 100%;
-  max-width: 860px;
+  max-width: 1100px;
   background: var(--page-bg, var(--bg));
   border-radius: 8px;
-  padding: 48px 56px;
+  padding: 48px 64px;
   box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
 }
 @media (max-width: 920px) {
